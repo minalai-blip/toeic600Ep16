@@ -87,7 +87,7 @@
 
     <div class="content-padding">
         <div id="intro-area" class="intro-header">
-            <h1>【EP16】核心單字・打底特訓</h1>
+            <h1>【EP16】基礎打底特訓</h1>
             <p>🔥 直覺 3 秒挑戰。5 題快速上手。🔥</p>
         </div>
 
@@ -128,69 +128,118 @@
             
             <div><span class="retry-link" onclick="initQuiz()">↺ 再練一次這組單字</span></div>
 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNkem-vuwWTDc5eEfhv4FlqpubNv7dsoY0uFQEcv4c5rCtyg/viewform?usp=header" class="cta-button" target="_blank">前往👉實戰驗收：📝多益模擬題型</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNkem-vuwWTDc5eEfhv4FlqpubNv7dsoY0uFQEcv4c5rCtyg/viewform?usp=header" class="cta-button" target="_blank">前往👉下一關:中階情境演練</a>
 
             <div class="footer-upsell">
-                💡 這套「直覺單字+實戰刷題」模式很有效吧!完整多益衝刺計畫已在蝦皮上架。<br>
-                <a href="https://shopee.tw/YOUR_LINK" class="shopee-link" target="_blank">點此前往蝦皮賣場看更多</a>
+                這套「單字直覺」練習模式很有效吧!完整多益衝刺計畫已上架。<br>
+                <a href="https://shopee.tw/YOUR_LINK" class="shopee-link" target="_blank">點此前往看更多</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-// EP16 核心資料庫：無首字母提示、移除所有字尾變化的純挖空版本
+// EP16 核心資料庫 (376 - 400 共 25 字，正誤交替設計，錯誤中文皆由本集單字群交叉誘答)
 const rawData = [
-    { type: "單字辨析", word: "repair <u><b>electronic components</b></u>", show: "修理電子零件", ans: true, feedback: "component 是名詞「組成部分、零件」。" },
-    { type: "句型搭配", word: "component", show: "repair electronic ______ / 填入：component", ans: true, feedback: "應填入 components (原型為 component)。" },
-    { type: "單字辨析", word: "<u><b>enable</b></u> staff to work from home", show: "解雇在家工作的員工", ans: false, feedback: "enable 是動詞「使能夠」，常用 enable someone to do something。" },
-    { type: "句型搭配", word: "enable", show: "______ staff to work from home / 填入：enable", ans: true, feedback: "應填入 enable。" },
-    { type: "單字辨析", word: "an <u><b>enjoyable</b></u> dining experience", show: "愉快的用餐體驗", ans: true, feedback: "enjoyable 是形容詞「愉快的」。" },
-    { type: "句型搭配", word: "enjoyable", show: "an ______ dining experience / 填入：informal", ans: false, feedback: "應填入 enjoyable。" },
-    { type: "單字辨析", word: "serve <u><b>existing</b></u> customers", show: "服務現有客戶", ans: true, feedback: "existing 是形容詞「現有的、現行的」。" },
-    { type: "句型搭配", word: "existing", show: "serve ______ customers / 填入：existing", ans: true, feedback: "應填入 existing。" },
-    { type: "單字辨析", word: "post advertising <u><b>flyers</b></u>", show: "張貼宣傳海報", ans: false, feedback: "flyer 指「傳單」，此處作複數。" },
-    { type: "句型搭配", word: "flyer", show: "post advertising ______ / 填入：flyers", ans: true, feedback: "應填入 flyers (原型為 flyer)。" },
-    { type: "單字辨析", word: "<u><b>proceed</b></u> to the boarding gate", show: "前往登機門", ans: true, feedback: "proceed 是動詞「前往、前進」，常與 to 連用。" },
-    { type: "句型搭配", word: "proceed", show: "______ to the boarding gate / 填入：prevent", ans: false, feedback: "應填入 proceed。" },
-    { type: "單字辨析", word: "<u><b>prevent</b></u> employees from sharing data", show: "防止員工分享資料", ans: true, feedback: "prevent 是動詞「防止、阻止」，常搭配 from + Ving。" },
-    { type: "句型搭配", word: "prevent", show: "______ employees from sharing data / 填入：prevent", ans: true, feedback: "應填入 prevent。" },
-    { type: "單字辨析", word: "Employees and managers <u><b>alike</b></u> benefit...", show: "員工和主管都不受惠", ans: false, feedback: "alike 在此作為副詞，意為「同樣地、一樣地」。" },
-    { type: "句型搭配", word: "alike", show: "Employees and managers ______ benefit from the new policy. / 填入：alike", ans: true, feedback: "應填入 group (此處應為 alike)。" },
-    { type: "單字辨析", word: "I was <u><b>appointed</b></u> the new department head.", show: "我被任命為新部門主管", ans: true, feedback: "appoint 是動詞「指派、任命」，在此用被動態。" },
-    { type: "句型搭配", word: "appoint", show: "I was ______ the new department head. / 填入：appointed", ans: true, feedback: "應填入 appointed (原型為 appoint)。" },
-    { type: "單字辨析", word: "establish a high-speed Internet <u><b>connection</b></u>", show: "中斷網路連線", ans: false, feedback: "connection 是名詞「連接、連線」。" },
-    { type: "句型搭配", word: "connection", show: "establish a high-speed Internet ______ / 填入：connection", ans: true, feedback: "應填入 connection。" },
-    { type: "單字辨析", word: "<u><b>eager</b></u> to learn new skills", show: "渴望學習新技能", ans: true, feedback: "eager 是形容詞「渴望的」，常搭配 be eager to V。" },
-    { type: "句型搭配", word: "eager", show: "______ to learn new skills / 填入：fairly", ans: false, feedback: "應填入 eager。" },
-    { type: "單字辨析", word: "with <u><b>ease</b></u> of use", show: "使用方便、容易", ans: true, feedback: "ease 是名詞「容易、舒適」。" },
-    { type: "句型搭配", word: "ease", show: "with ______ of use / 填入：ease", ans: true, feedback: "應填入 ease。" },
-    { type: "單字辨析", word: "a <u><b>fairly</b></u> common mistake", show: "非常罕見的錯誤", ans: false, feedback: "fairly 是副詞「相當地」，修飾形容詞。" },
-    { type: "句型搭配", word: "fairly", show: "a ______ common mistake / 填入：fairly", ans: true, feedback: "應填入 fairly。" },
-    { type: "單字辨析", word: "<u><b>absolutely</b></u> free of charge", show: "完全免費", ans: true, feedback: "absolutely 是副詞「完全地、絕對地」。" },
-    { type: "句型搭配", word: "absolutely", show: "______ free of charge / 填入：equally", ans: false, feedback: "應填入 absolutely。" },
-    { type: "單字辨析", word: "create a friendly <u><b>atmosphere</b></u>", show: "營造友善氣氛", ans: true, feedback: "atmosphere 是名詞「氣氛、大氣」。" },
-    { type: "句型搭配", word: "atmosphere", show: "create a friendly ______ / 填入：atmosphere", ans: true, feedback: "應填入 atmosphere。" },
-    { type: "單字辨析", word: "<u><b>calculate</b></u> total expenses", show: "核對總支出金額", ans: false, feedback: "calculate 是動詞「計算」。" },
-    { type: "句型搭配", word: "calculate", show: "______ total expenses / 填入：calculate", ans: true, feedback: "應填入 calculate。" },
-    { type: "單字辨析", word: "in <u><b>contrast</b></u> to our competitors", show: "與我們的競爭對手相比/形成對比", ans: true, feedback: "in contrast to 意為「與...相比、與...相反」。" },
-    { type: "句型搭配", word: "contrast", show: "in ______ to our competitors / 填入：strength", ans: false, feedback: "應填入 contrast。" },
-    { type: "單字辨析", word: "<u><b>monitor</b></u> the quality of products", show: "監控產品品質", ans: true, feedback: "monitor 在此作為動詞，意為「監視、監控」。" },
-    { type: "句型搭配", word: "monitor", show: "______ the quality of products / 填入：monitor", ans: true, feedback: "應填入 monitor。" },
-    { type: "單字辨析", word: "I <u><b>occasionally</b></u> travel abroad.", show: "我頻繁到國外出差", ans: false, feedback: "occasionally 是副詞「偶爾地」。" },
-    { type: "句型搭配", word: "occasionally", show: "I ______ travel abroad. / 填入：occasionally", ans: true, feedback: "應填入 occasionally。" },
-    { type: "單字辨析", word: "gain <u><b>practical</b></u> experience", show: "獲得實務/實際經驗", ans: true, feedback: "practical 是形容詞「務實的、實際的、實用的」。" },
-    { type: "句型搭配", word: "practical", show: "gain ______ experience / 填入：serious", ans: false, feedback: "應填入 practical。" },
-    { type: "單字辨析", word: "face a <u><b>serious</b></u> problem", show: "面臨嚴重的問題", ans: true, feedback: "serious 是形容詞「嚴重的、認真的」。" },
-    { type: "句型搭配", word: "serious", show: "face a ______ problem / 填入：serious", ans: true, feedback: "應填入 serious" },
-    { type: "單字辨析", word: "the <u><b>strength</b></u> of the bridge", show: "橋樑的長度", ans: false, feedback: "strength 是名詞「強度、力量」。" },
-    { type: "句型搭配", word: "strength", show: "the ______ of the bridge / 填入：strength", ans: true, feedback: "應填入 strength。" },
-    { type: "單字辨析", word: "<u><b>equally</b></u> important", show: "同樣重要", ans: true, feedback: "equally 是副詞「相同地、同樣地」。" },
-    { type: "句型搭配", word: "equally", show: "______ important / 填入：absolutely", ans: false, feedback: "應填入 equally。" },
-    { type: "單字辨析", word: "<u><b>imports</b></u> from Japan", show: "來自日本的進口商品", ans: true, feedback: "import 在此作為名詞指「進口商品」，常用複數型。" },
-    { type: "句型搭配", word: "import", show: "______ from Japan / 填入：imports", ans: true, feedback: "應填入 imports (原型為 import)。" },
-    { type: "單字辨析", word: "an <u><b>informal</b></u> meeting", show: "正式的會議", ans: false, feedback: "informal 是形容詞「非正式的、隨意的」。" },
-    { type: "句型搭配", word: "informal", show: "an ______ meeting / 填入：informal", ans: true, feedback: "應填入 informal。" }
+    // 376. component (辨析: True / 句型: False)
+    { id: "component", type: "單字辨析", word: "repair electronic <u><b>components</b></u>", show: "組成部分、零件", ans: true, feedback: "component 是名詞「組成部分、零件」。" },
+    { id: "component", type: "句型搭配", show: "repair electronic ______ / 填入：ease", ans: false, feedback: "應填入 component。" },
+
+    // 377. enable (辨析: False / 句型: True)
+    { id: "enable", type: "單字辨析", word: "<u><b>enable</b></u> staff to work from home", show: "指派、任命", ans: false, feedback: "enable 是動詞「使能夠」。" },
+    { id: "enable", type: "句型搭配", show: "______ staff to work from home / 填入：enable", ans: true, feedback: "應填入 enable。" },
+
+    // 378. enjoyable (辨析: True / 句型: False)
+    { id: "enjoyable", type: "單字辨析", word: "an <u><b>enjoyable</b></u> dining experience", show: "愉快的", ans: true, feedback: "enjoyable 是形容詞「愉快的」。" },
+    { id: "enjoyable", type: "句型搭配", show: "an ______ dining experience / 填入：existing", ans: false, feedback: "應填入 enjoyable。" },
+
+    // 379. existing (辨析: False / 句型: True)
+    { id: "existing", type: "單字辨析", word: "serve <u><b>existing</b></u> customers", show: "非正式的;隨意的", ans: false, feedback: "existing 是形容詞「現有的、現行的」。" },
+    { id: "existing", type: "句型搭配", show: "serve ______ customers / 填入：existing", ans: true, feedback: "應填入 existing。" },
+
+    // 380. flyer (辨析: True / 句型: False)
+    { id: "flyer", type: "單字辨析", word: "post advertising <u><b>flyers</b></u>", show: "傳單", ans: true, feedback: "flyer 是名詞「傳單」。" },
+    { id: "flyer", type: "句型搭配", show: "post advertising ______ / 填入：connection", ans: false, feedback: "應填入 flyer。" },
+
+    // 381. proceed (辨析: False / 句型: True)
+    { id: "proceed", type: "單字辨析", word: "<u><b>proceed</b></u> to the boarding gate", show: "防止、阻止", ans: false, feedback: "proceed 是動詞「前往、前進」。" },
+    { id: "proceed", type: "句型搭配", show: "______ to the boarding gate / 填入：proceed", ans: true, feedback: "應填入 proceed。" },
+
+    // 382. prevent (辨析: True / 句型: False)
+    { id: "prevent", type: "單字辨析", word: "<u><b>prevent</b></u> employees from sharing data", show: "防止、阻止", ans: true, feedback: "prevent 是動詞「防止、阻止」。" },
+    { id: "prevent", type: "句型搭配", show: "______ employees from sharing data / 填入：proceed", ans: false, feedback: "應填入 prevent。" },
+
+    // 383. alike (辨析: False / 句型: True)
+    { id: "alike", type: "單字辨析", word: "Employees and managers <u><b>alike</b></u> benefit from the new policy.", show: "相當", ans: false, feedback: "alike 是副詞「一樣地」。" },
+    { id: "alike", type: "句型搭配", show: "Employees and managers ______ benefit from the new policy. / 填入：alike", ans: true, feedback: "應填入 alike。" },
+
+    // 384. appoint (辨析: True / 句型: False)
+    { id: "appoint", type: "單字辨析", word: "I was <u><b>appointed</b></u> the new department head.", show: "指派、任命", ans: true, feedback: "appoint 是動詞「指派、任命」。" },
+    { id: "appoint", type: "句型搭配", show: "I was ______ the new department head. / 填入：prevented", ans: false, feedback: "應填入 appoint。" },
+
+    // 385. connection (辨析: False / 句型: True)
+    { id: "connection", type: "單字辨析", word: "establish a high-speed Internet <u><b>connection</b></u>", show: "氣氛", ans: false, feedback: "connection 是名詞「連接」。" },
+    { id: "connection", type: "句型搭配", show: "establish a high-speed Internet ______ / 填入：connection", ans: true, feedback: "應填入 connection。" },
+
+    // 386. eager (辨析: True / 句型: False)
+    { id: "eager", type: "單字辨析", word: "<u><b>eager</b></u> to learn new skills", show: "渴望", ans: true, feedback: "eager 是形容詞「渴望」。" },
+    { id: "eager", type: "句型搭配", show: "______ to learn new skills / 填入：practical", ans: false, feedback: "應填入 eager。" },
+
+    // 387. ease (辨析: False / 句型: True)
+    { id: "ease", type: "單字辨析", word: "with <u><b>ease</b></u> of use", show: "強度", ans: false, feedback: "ease 是名詞「容易」。" },
+    { id: "ease", type: "句型搭配", show: "with ______ of use / 填入：ease", ans: true, feedback: "應填入 ease。" },
+
+    // 388. fairly (辨析: True / 句型: False)
+    { id: "fairly", type: "單字辨析", word: "a <u><b>fairly</b></u> common mistake", show: "相當", ans: true, feedback: "fairly 是副詞「相當」。" },
+    { id: "fairly", type: "句型搭配", show: "a ______ common mistake / 填入：monitor", ans: false, feedback: "應填入 fairly。" },
+
+    // 389. absolutely (辨析: False / 句型: True)
+    { id: "absolutely", type: "單字辨析", word: "<u><b>absolutely</b></u> free of charge", show: "偶爾", ans: false, feedback: "absolutely 是副詞「完全地、絕對地」。" },
+    { id: "absolutely", type: "句型搭配", show: "______ free of charge / 填入：absolutely", ans: true, feedback: "應填入 absolutely。" },
+
+    // 390. atmosphere (辨析: True / 句型: False)
+    { id: "atmosphere", type: "單字辨析", word: "create a friendly <u><b>atmosphere</b></u>", show: "氣氛", ans: true, feedback: "atmosphere 是名詞「氣氛」。" },
+    { id: "atmosphere", type: "句型搭配", show: "create a friendly ______ / 填入：component", ans: false, feedback: "應填入 atmosphere。" },
+
+    // 391. calculate (辨析: False / 句型: True)
+    { id: "calculate", type: "單字辨析", word: "<u><b>calculate</b></u> total expenses", show: "使能夠", ans: false, feedback: "calculate 是動詞「計算」。" },
+    { id: "calculate", type: "句型搭配", show: "______ total expenses / 填入：calculate", ans: true, feedback: "應填入 calculate。" },
+
+    // 392. contrast (辨析: True / 句型: False)
+    { id: "contrast", type: "單字辨析", word: "in <u><b>contrast</b></u> to our competitors", show: "對比、對照、差異", ans: true, feedback: "contrast 是名詞「對比、對照、差異」。" },
+    { id: "contrast", type: "句型搭配", show: "in ______ to our competitors / 填入：ease", ans: false, feedback: "應填入 contrast。" },
+
+    // 393. monitor (辨析: False / 句型: True)
+    { id: "monitor", type: "單字辨析", word: "<u><b>monitor</b></u> the quality of products", show: "進口(商品)", ans: false, feedback: "monitor 是動詞「監視、監控」。" },
+    { id: "monitor", type: "句型搭配", show: "______ the quality of products / 填入：monitor", ans: true, feedback: "應填入 monitor。" },
+
+    // 394. occasionally (辨析: True / 句型: False)
+    { id: "occasionally", type: "單字辨析", word: "I <u><b>occasionally</b></u> travel abroad.", show: "偶爾", ans: true, feedback: "occasionally 是副詞「偶爾」。" },
+    { id: "occasionally", type: "句型搭配", show: "I ______ travel abroad. / 填入：fairly", ans: false, feedback: "應填入 occasionally。" },
+
+    // 395. practical (辨析: False / 句型: True)
+    { id: "practical", type: "單字辨析", word: "gain <u><b>practical</b></u> experience", show: "嚴重的;認真的", ans: false, feedback: "practical 是形容詞「務實的、實際的、實用的」。" },
+    { id: "practical", type: "句型搭配", show: "gain ______ experience / 填入：practical", ans: true, feedback: "應填入 practical。" },
+
+    // 396. serious (辨析: True / 句型: False)
+    { id: "serious", type: "單字辨析", word: "face a <u><b>serious</b></u> problem", show: "嚴重的;認真的;重要的", ans: true, feedback: "serious 是形容詞「嚴重的;認真的;重要的」。" },
+    { id: "serious", type: "句型搭配", show: "face a ______ problem / 填入：eager", ans: false, feedback: "應填入 serious。" },
+
+    // 397. strength (辨析: False / 句型: True)
+    { id: "strength", type: "單字辨析", word: "the <u><b>strength</b></u> of the bridge", show: "容易", ans: false, feedback: "strength 是名詞「力量;強度;濃度」。" },
+    { id: "strength", type: "句型搭配", show: "the ______ of the bridge / 填入：strength", ans: true, feedback: "應填入 strength。" },
+
+    // 398. equally (辨析: True / 句型: False)
+    { id: "equally", type: "單字辨析", word: "<u><b>equally</b></u> important", show: "相同地;平均地", ans: true, feedback: "equally 是副詞「相同地;平均地」。" },
+    { id: "equally", type: "句型搭配", show: "______ important / 填入：practical", ans: false, feedback: "應填入 equally。" },
+
+    // 399. import (辨析: False / 句型: True)
+    { id: "import", type: "單字辨析", word: "<u><b>imports</b></u> from Japan", show: "傳單", ans: false, feedback: "import 是名詞「進口(商品)」。" },
+    { id: "import", type: "句型搭配", show: "______ from Japan / 填入：imports", ans: true, feedback: "應填入 imports。" },
+
+    // 400. informal (辨析: True / 句型: False)
+    { id: "informal", type: "單字辨析", word: "an <u><b>informal</b></u> meeting", show: "非正式的;隨意的", ans: true, feedback: "informal 是形容詞「非正式的;隨意的」。" },
+    { id: "informal", type: "句型搭配", show: "an ______ meeting / 填入：serious", ans: false, feedback: "應填入 informal。" }
 ];
 
 let questions = [];
@@ -199,9 +248,36 @@ let score = 0;
 let userHistoryList = []; 
 
 function initQuiz() {
-    const shuffled = [...rawData].sort(() => 0.5 - Math.random());
-    questions = shuffled.slice(0, 5);
-    currentIndex = 0; score = 0; userHistoryList = [];
+    const groups = {};
+    rawData.forEach(item => {
+        if (!groups[item.id]) groups[item.id] = [];
+        groups[item.id].push(item);
+    });
+
+    const wordIds = Object.keys(groups);
+    const shuffledIds = wordIds.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+    // 強制混合題型設計：兩種類型至少各佔一半，防止單一題型連續出現 5 題
+    const typesToAssign = ["單字辨析", "單字辨析", "句型搭配", "句型搭配", Math.random() > 0.5 ? "單字辨析" : "句型搭配"];
+    typesToAssign.sort(() => 0.5 - Math.random());
+
+    let selectedQuestions = [];
+    shuffledIds.forEach((id, index) => {
+        const targetType = typesToAssign[index];
+        const questionOfTargetType = groups[id].find(q => q.type === targetType);
+        if (questionOfTargetType) {
+            selectedQuestions.push(questionOfTargetType);
+        } else {
+            const randomPick = groups[id][Math.floor(Math.random() * groups[id].length)];
+            selectedQuestions.push(randomPick);
+        }
+    });
+
+    questions = selectedQuestions.sort(() => 0.5 - Math.random());
+    
+    currentIndex = 0; 
+    score = 0; 
+    userHistoryList = [];
     document.getElementById('main-banner').classList.remove('compact');
     document.getElementById('intro-area').style.display = 'block';
     document.getElementById('quiz-section').style.display = 'block';
@@ -215,15 +291,21 @@ function loadQuestion() {
     document.getElementById('q-count').innerText = `題目 ${currentIndex + 1} / 5`;
     document.getElementById('progress').style.width = `${((currentIndex + 1) / 5) * 100}%`;
     document.getElementById('type-tag').innerText = q.type;
-    const wordEl = document.getElementById('word');
     
+    const wordEl = document.getElementById('word');
+    const contentEl = document.getElementById('content');
+    
+    // 徹底清空並重置欄位，防止 undefined 交叉污染與單字殘留 Bug
+    wordEl.innerHTML = '';
+    contentEl.innerText = '';
+
     if (q.type === "句型搭配") {
-        wordEl.style.display = 'none';
-        document.getElementById('content').innerText = q.show;
+        wordEl.style.display = 'none'; 
+        contentEl.innerText = q.show; 
     } else {
         wordEl.style.display = 'block';
         wordEl.innerHTML = q.word; 
-        document.getElementById('content').innerText = `中文意思：${q.show}`;
+        contentEl.innerText = `核心單字中文意思：${q.show}`;
     }
     
     document.getElementById('feedback').style.display = 'none';
@@ -237,7 +319,13 @@ function handleAnswer(userAns) {
     document.querySelectorAll('.btn-group button').forEach(b => b.disabled = true);
     feedback.style.display = 'block';
     const isCorrect = (userAns === q.ans);
-    userHistoryList.push({ word: q.word, isCorrect: isCorrect, feedback: q.feedback });
+    
+    userHistoryList.push({ 
+        word: q.type === "句型搭配" ? "句型搭配" : q.word, 
+        isCorrect: isCorrect, 
+        feedback: q.feedback 
+    });
+    
     if (isCorrect) {
         score += 20;
         feedback.innerText = "✅ " + q.feedback;
@@ -265,11 +353,11 @@ function showResult() {
     const now = new Date();
     const timeStr = `${now.getMonth() + 1}/${now.getDate()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 
-    // 使用獨立的 EP16 儲存欄位
-    let history = JSON.parse(localStorage.getItem('toeic_history_ep16_v3')) || [];
+    // 使用 EP16 專屬快取緩存 Key 值
+    let history = JSON.parse(localStorage.getItem('toeic_history_ep16_v1')) || [];
     history.unshift({ score: score, time: timeStr });
     if(history.length > 5) history.pop();
-    localStorage.setItem('toeic_history_ep16_v3', JSON.stringify(history));
+    localStorage.setItem('toeic_history_ep16_v1', JSON.stringify(history));
     renderHistoryList(history);
 
     document.getElementById('review-list').innerHTML = userHistoryList.map(item => `
@@ -296,7 +384,7 @@ function renderHistoryList(history) {
 
 function confirmClear() {
     if (confirm("確定要清除所有練習紀錄嗎？")) {
-        localStorage.removeItem('toeic_history_ep16_v3');
+        localStorage.removeItem('toeic_history_ep16_v1');
         renderHistoryList([]);
     }
 }
